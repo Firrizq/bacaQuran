@@ -1,10 +1,9 @@
-package com.firrizq.myapplication.network
+package com.firrizq.myapplication.network.quran
 
 import android.os.Parcelable
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.parcelize.Parcelize
-import javax.annotation.processing.Generated
 
 @JsonClass(generateAdapter = true)
 data class SurahResponse(
@@ -13,7 +12,7 @@ data class SurahResponse(
 	val code: Int? = null,
 
 	@Json(name="data")
-	val listSurah: List<SurahItem>? = null,
+	val listSurah: List<SurahItem>,
 
 	@Json(name="status")
 	val status: String? = null

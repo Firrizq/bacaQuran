@@ -1,5 +1,6 @@
 package com.firrizq.myapplication.network
 
+import com.firrizq.myapplication.network.quran.QuranApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
