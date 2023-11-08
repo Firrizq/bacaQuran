@@ -1,14 +1,13 @@
-package com.firrizq.myapplication.presentation.Quran
+package com.firrizq.myapplication.presentation.quran
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.firrizq.myapplication.databinding.FragmentQuranBinding
 import com.firrizq.myapplication.adapter.QuranAdapter
 import com.firrizq.myapplication.data.Resource
@@ -45,6 +44,7 @@ class QuranFragment : Fragment() {
                     showLoading(false)
                 }
                 is Resource.Error -> {
+                    Toast.makeText(context, "Error:" + it.message, Toast.LENGTH_SHORT).show()
                     Snackbar.make(view, "Error:" + it.message, Snackbar.LENGTH_INDEFINITE).show()
                     showLoading(false)
                 }

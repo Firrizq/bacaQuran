@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.flowOf
 
 object DataMapper {
 
+    @JvmName("mapSurahItemToDomain")
     fun mapResponseToDomain(input: List<SurahItem>): Flow<List<Surah>> {
         val listSurah = ArrayList<Surah>()
         input.map {
@@ -27,6 +28,7 @@ object DataMapper {
         return flowOf(listSurah)
     }
 
+    @JvmName("mapQuranEditionItemDomain")
     fun mapResponseToDomain(input: List<QuranEditionItem>) : Flow<List<QuranEdition>> {
         val quranEditions = ArrayList<QuranEdition>()
         input.map {

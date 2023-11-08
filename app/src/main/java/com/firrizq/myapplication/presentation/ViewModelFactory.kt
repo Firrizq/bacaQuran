@@ -3,7 +3,7 @@ package com.firrizq.myapplication.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.firrizq.myapplication.di.Injection
-import com.firrizq.myapplication.presentation.Quran.QuranViewModel
+import com.firrizq.myapplication.presentation.quran.QuranViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory : ViewModelProvider.NewInstanceFactory() {

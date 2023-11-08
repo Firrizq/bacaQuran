@@ -4,8 +4,10 @@ import android.util.Log
 import com.firrizq.myapplication.network.quran.QuranApiService
 import com.firrizq.myapplication.network.quran.QuranEditionItem
 import com.firrizq.myapplication.network.quran.SurahItem
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class QuranRemoteDataSource(private val apiService: QuranApiService) {
 
@@ -19,7 +21,7 @@ class QuranRemoteDataSource(private val apiService: QuranApiService) {
                 emit(NetworkResponse.Error(e.toString()))
                 Log.e(QuranRemoteDataSource::class.java.simpleName, "error: " + e.localizedMessage)
             }
-        }
+        }.flowOn(Dispatchers.IO)
 
     suspend fun getDetailSurahWithQuranEditions(number: Int): Flow<NetworkResponse<List<QuranEditionItem>>> =
         flow {
@@ -31,5 +33,5 @@ class QuranRemoteDataSource(private val apiService: QuranApiService) {
                 emit(NetworkResponse.Error(e.toString()))
                 Log.e(QuranRemoteDataSource::class.java.simpleName, "error: " + e.localizedMessage)
             }
-        }
+        }.flowOn(Dispatchers.IO)
 }

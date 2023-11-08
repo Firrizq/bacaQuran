@@ -1,15 +1,13 @@
-package com.firrizq.myapplication.presentation.Quran
+package com.firrizq.myapplication.presentation.quran
 
 import android.media.AudioAttributes
 import android.media.MediaPlayer
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firrizq.myapplication.R
 import com.firrizq.myapplication.adapter.SurahAdapter
@@ -17,8 +15,7 @@ import com.firrizq.myapplication.data.Resource
 import com.firrizq.myapplication.databinding.ActivityDetailSurahBinding
 import com.firrizq.myapplication.databinding.CustomViewAlertdialogBinding
 import com.firrizq.myapplication.domain.model.Ayah
-import com.firrizq.myapplication.network.quran.AyahsItem
-import com.firrizq.myapplication.network.quran.SurahItem
+import com.firrizq.myapplication.domain.model.Surah
 import com.firrizq.myapplication.presentation.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
@@ -26,8 +23,8 @@ class DetailSurahActivity : AppCompatActivity() {
     private var _binding: ActivityDetailSurahBinding? = null
     private val binding get() = _binding as ActivityDetailSurahBinding
 
-    private var _surah: SurahItem? = null
-    private val surah get() = _surah as SurahItem
+    private var _surah: Surah? = null
+    private val surah get() = _surah as Surah
 
     private var _mediaPlayer: MediaPlayer? = null
     private val mediaPlayer get() = _mediaPlayer as MediaPlayer
@@ -53,7 +50,7 @@ class DetailSurahActivity : AppCompatActivity() {
         _binding = ActivityDetailSurahBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        _surah = intent.getParcelableExtra(EXTRA_DATA, SurahItem::class.java)
+        _surah = intent.getParcelableExtra(EXTRA_DATA, Surah::class.java)
 
         initView()
 
@@ -71,12 +68,18 @@ class DetailSurahActivity : AppCompatActivity() {
                     is Resource.Loading -> showLoading(true)
                     is Resource.Success -> {
                         mAdapter.setData(it.data?.get(0)?.ayahs, it.data)
-                        binding.rvSurah.layoutManager = LinearLayoutManager(this@DetailSurahActivity)
+                        binding.rvSurah.layoutManager =
+                            LinearLayoutManager(this@DetailSurahActivity)
                         binding.rvSurah.adapter = mAdapter
                         showLoading(false)
-                        }
+                    }
+
                     is Resource.Error -> {
-                        Snackbar.make(binding.root, "Error:" + it.message, Snackbar.LENGTH_INDEFINITE).show()
+                        Snackbar.make(
+                            binding.root,
+                            "Error:" + it.message,
+                            Snackbar.LENGTH_INDEFINITE
+                        ).show()
                         showLoading(false)
                     }
                 }
