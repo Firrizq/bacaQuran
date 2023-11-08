@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.network.quran
+package com.firrizq.myapplication.core.network.quran
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass

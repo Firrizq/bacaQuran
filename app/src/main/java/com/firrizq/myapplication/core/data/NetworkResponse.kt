@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.data
+package com.firrizq.myapplication.core.data
 
 sealed class NetworkResponse<out T> {
     data class Success<out T>(val data: T): NetworkResponse<T>()

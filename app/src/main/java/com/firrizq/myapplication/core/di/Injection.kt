@@ -1,8 +1,8 @@
-package com.firrizq.myapplication.di
+package com.firrizq.myapplication.core.di
 
-import com.firrizq.myapplication.data.QuranRemoteDataSource
-import com.firrizq.myapplication.data.QuranRepository
-import com.firrizq.myapplication.network.ApiConfig
+import com.firrizq.myapplication.core.data.QuranRemoteDataSource
+import com.firrizq.myapplication.core.data.QuranRepository
+import com.firrizq.myapplication.core.network.ApiConfig
 
 object Injection {
 

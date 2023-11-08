@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.domain.model
+package com.firrizq.myapplication.core.domain.model
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

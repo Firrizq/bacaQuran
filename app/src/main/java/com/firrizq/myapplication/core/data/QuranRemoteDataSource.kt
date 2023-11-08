@@ -1,9 +1,9 @@
-package com.firrizq.myapplication.data
+package com.firrizq.myapplication.core.data
 
 import android.util.Log
-import com.firrizq.myapplication.network.quran.QuranApiService
-import com.firrizq.myapplication.network.quran.QuranEditionItem
-import com.firrizq.myapplication.network.quran.SurahItem
+import com.firrizq.myapplication.core.network.quran.QuranApiService
+import com.firrizq.myapplication.core.network.quran.QuranEditionItem
+import com.firrizq.myapplication.core.network.quran.SurahItem
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

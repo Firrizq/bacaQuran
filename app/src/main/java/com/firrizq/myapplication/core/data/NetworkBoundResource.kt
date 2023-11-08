@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.data
+package com.firrizq.myapplication.core.data
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll

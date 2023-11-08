@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firrizq.myapplication.databinding.FragmentQuranBinding
 import com.firrizq.myapplication.adapter.QuranAdapter
-import com.firrizq.myapplication.data.Resource
+import com.firrizq.myapplication.core.data.Resource
 import com.firrizq.myapplication.presentation.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 

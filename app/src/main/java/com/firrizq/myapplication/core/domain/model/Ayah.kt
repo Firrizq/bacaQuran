@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.domain.model
+package com.firrizq.myapplication.core.domain.model
 
 data class Ayah(
     val number: Int? = null,

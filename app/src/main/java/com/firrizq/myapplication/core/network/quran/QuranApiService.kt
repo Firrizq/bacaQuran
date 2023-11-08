@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.network.quran
+package com.firrizq.myapplication.core.network.quran
 
 import retrofit2.Call
 import retrofit2.http.GET

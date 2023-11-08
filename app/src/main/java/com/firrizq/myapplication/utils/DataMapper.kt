@@ -1,11 +1,11 @@
 package com.firrizq.myapplication.utils
 
-import com.firrizq.myapplication.domain.model.Ayah
-import com.firrizq.myapplication.domain.model.QuranEdition
-import com.firrizq.myapplication.domain.model.Surah
-import com.firrizq.myapplication.network.quran.AyahsItem
-import com.firrizq.myapplication.network.quran.QuranEditionItem
-import com.firrizq.myapplication.network.quran.SurahItem
+import com.firrizq.myapplication.core.domain.model.Ayah
+import com.firrizq.myapplication.core.domain.model.QuranEdition
+import com.firrizq.myapplication.core.domain.model.Surah
+import com.firrizq.myapplication.core.network.quran.AyahsItem
+import com.firrizq.myapplication.core.network.quran.QuranEditionItem
+import com.firrizq.myapplication.core.network.quran.SurahItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 

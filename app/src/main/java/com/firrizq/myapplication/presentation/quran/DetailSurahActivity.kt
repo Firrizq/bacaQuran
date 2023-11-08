@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.firrizq.myapplication.R
 import com.firrizq.myapplication.adapter.SurahAdapter
-import com.firrizq.myapplication.data.Resource
+import com.firrizq.myapplication.core.data.Resource
 import com.firrizq.myapplication.databinding.ActivityDetailSurahBinding
 import com.firrizq.myapplication.databinding.CustomViewAlertdialogBinding
-import com.firrizq.myapplication.domain.model.Ayah
-import com.firrizq.myapplication.domain.model.Surah
+import com.firrizq.myapplication.core.domain.model.Ayah
+import com.firrizq.myapplication.core.domain.model.Surah
 import com.firrizq.myapplication.presentation.ViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
