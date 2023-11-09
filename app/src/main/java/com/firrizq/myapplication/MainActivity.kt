@@ -111,4 +111,19 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if(requestCode == LOC_PERMISSION_REQ_CORE
+            && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            getUserLocation()
+        } else {
+            Toast.makeText(this, "Need to give permission Location", Toast.LENGTH_SHORT).show()
+            getUserLocation()
+        }
+    }
 }
