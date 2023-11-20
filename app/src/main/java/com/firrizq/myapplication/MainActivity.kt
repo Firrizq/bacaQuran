@@ -10,10 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.Settings
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.firrizq.myapplication.databinding.ActivityMainBinding
+import com.firrizq.myapplication.presentation.SharedViewModel
+import com.firrizq.myapplication.presentation.ViewModelFactory
 import com.firrizq.myapplication.utils.LOC_PERMISSION_REQ_CORE
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -26,6 +29,9 @@ class MainActivity : AppCompatActivity() {
 
     private var _fusedLocation: FusedLocationProviderClient? = null
     private val fusedLocation get() = _fusedLocation as FusedLocationProviderClient
+
+    private val sharedViewModel: SharedViewModel by viewModels { ViewModelFactory(this) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
@@ -45,25 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun getUserLocation() {
         if (checkLocationPermission()) {
             if (isLocationOn()) {
-                fusedLocation.lastLocation.addOnCompleteListener {
-                    val geocoder = Geocoder(this, Locale.getDefault())
-                    geocoder.getFromLocation(
-                        -6.3927881,
-                        106.8506263,
-//                            it.result.latitude,
-//                            it.result.longitude,
-                        1
-                    ) { listAddress ->
-                        val city = listAddress[0].subAdminArea
-                        val resultOfCity = city.split(" ")
-                        Snackbar.make(binding.root, resultOfCity[1], Snackbar.LENGTH_LONG).show()
-                    }
-//                    if (it.result != null) {
-//
-//                    } else {
-//                        Toast.makeText(this, "Sorry, something wrong.", Toast.LENGTH_SHORT).show()
-//                    }
-                }
+                sharedViewModel.getKnownLastLocation()
             } else {
                 Toast.makeText(this, "Please turn on your location.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)

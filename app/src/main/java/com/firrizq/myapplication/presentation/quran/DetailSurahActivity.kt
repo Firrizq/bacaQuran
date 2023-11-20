@@ -29,7 +29,7 @@ class DetailSurahActivity : AppCompatActivity() {
     private var _mediaPlayer: MediaPlayer? = null
     private val mediaPlayer get() = _mediaPlayer as MediaPlayer
 
-    private val quranViewModel: QuranViewModel by viewModels { ViewModelFactory() }
+    private val quranViewModel: QuranViewModel by viewModels { ViewModelFactory(this) }
 
     private fun showLoading(isLoading: Boolean) {
         binding.apply {
