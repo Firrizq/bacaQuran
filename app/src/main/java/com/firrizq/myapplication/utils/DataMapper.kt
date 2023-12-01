@@ -91,7 +91,7 @@ object DataMapper {
             tanggal = input.tanggal,
             maghrib = input.maghrib
         )
-        return flowOf()
+        return flowOf(jadwal)
     }
 
 }

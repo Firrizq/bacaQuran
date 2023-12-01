@@ -100,11 +100,15 @@ class MainActivity : AppCompatActivity() {
         grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if(requestCode == LOC_PERMISSION_REQ_CORE
-            && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-            getUserLocation()
+        if (requestCode == LOC_PERMISSION_REQ_CORE) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getUserLocation()
+            } else {
+                Toast.makeText(this, "Need Permission to Access Location.", Toast.LENGTH_SHORT)
+                    .show()
+            }
         } else {
-            Toast.makeText(this, "Need to give permission Location", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Permission not found.", Toast.LENGTH_SHORT).show()
             getUserLocation()
         }
     }

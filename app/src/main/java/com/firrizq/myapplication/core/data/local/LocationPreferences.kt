@@ -86,14 +86,24 @@ class LocationPreferences(val context: Context) {
 
     private fun cityResult(isEnglish: Boolean, arrCity: List<String>): String {
         var result = ""
-        if (isEnglish){
+        if (isEnglish) {
             for (i in 0 until arrCity.size - 1) {
-                result += arrCity[i]
+                result += if (arrCity.size > 2){
+                    arrCity[i] + " "
+                } else {
+                    arrCity[i] + " "
+                }
             }
+            result = result.dropLast(1)
         } else {
             for (i in 1 until arrCity.size) {
-                result += arrCity[i]
+                result += if (arrCity.size > 2){
+                    arrCity[i] + " "
+                } else {
+                    arrCity[i] + " "
+                }
             }
+            result = result.dropLast(1)
         }
         return result
     }
