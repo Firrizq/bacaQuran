@@ -1,4 +1,4 @@
-package com.firrizq.myapplication.core.network.quran
+package com.firrizq.myapplication.core.data.network.quran
 
 import android.os.Parcelable
 import com.squareup.moshi.Json

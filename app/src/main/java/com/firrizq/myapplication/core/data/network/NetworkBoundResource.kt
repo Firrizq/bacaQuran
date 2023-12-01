@@ -1,5 +1,6 @@
-package com.firrizq.myapplication.core.data
+package com.firrizq.myapplication.core.data.network
 
+import com.firrizq.myapplication.core.data.Resource
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first

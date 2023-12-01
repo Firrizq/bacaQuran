@@ -6,8 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.firrizq.myapplication.databinding.ItemAyahBinding
 import com.firrizq.myapplication.core.domain.model.Ayah
 import com.firrizq.myapplication.core.domain.model.QuranEdition
-import com.firrizq.myapplication.core.network.quran.AyahsItem
-import com.firrizq.myapplication.core.network.quran.QuranEditionItem
 
 class SurahAdapter : RecyclerView.Adapter<SurahAdapter.MyViewHolder>() {
     private val listAyah = ArrayList<Ayah>()

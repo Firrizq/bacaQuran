@@ -1,6 +1,5 @@
-package com.firrizq.myapplication.core.network.quran
+package com.firrizq.myapplication.core.data.network.quran
 
-import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 

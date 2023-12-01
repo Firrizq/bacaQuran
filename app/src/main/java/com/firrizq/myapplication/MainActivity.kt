@@ -15,7 +15,6 @@ import androidx.core.app.ActivityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.firrizq.myapplication.databinding.ActivityMainBinding
-import com.firrizq.myapplication.presentation.SharedViewModel
 import com.firrizq.myapplication.presentation.ViewModelFactory
 import com.firrizq.myapplication.utils.LOC_PERMISSION_REQ_CORE
 import com.google.android.gms.location.FusedLocationProviderClient
@@ -27,17 +26,11 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding as ActivityMainBinding
 
-    private var _fusedLocation: FusedLocationProviderClient? = null
-    private val fusedLocation get() = _fusedLocation as FusedLocationProviderClient
-
-    private val sharedViewModel: SharedViewModel by viewModels { ViewModelFactory(this) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        _fusedLocation = LocationServices.getFusedLocationProviderClient(this)
         getUserLocation()
 
         val bottomNavView = binding.navBottomView
@@ -51,7 +44,8 @@ class MainActivity : AppCompatActivity() {
     private fun getUserLocation() {
         if (checkLocationPermission()) {
             if (isLocationOn()) {
-                sharedViewModel.getKnownLastLocation()
+                val fusedLocation = LocationServices.getFusedLocationProviderClient(this)
+                fusedLocation.lastLocation
             } else {
                 Toast.makeText(this, "Please turn on your location.", Toast.LENGTH_SHORT).show()
                 val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)

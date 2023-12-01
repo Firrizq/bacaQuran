@@ -1,27 +1,22 @@
 package com.firrizq.myapplication.presentation.adzan
 
-import android.location.Geocoder
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.firrizq.myapplication.R
+import com.firrizq.myapplication.core.data.Resource
 import com.firrizq.myapplication.databinding.FragmentAdzanBinding
-import com.firrizq.myapplication.databinding.FragmentQuranBinding
-import com.firrizq.myapplication.presentation.SharedViewModel
 import com.firrizq.myapplication.presentation.ViewModelFactory
-import com.google.android.material.snackbar.Snackbar
-import java.util.Locale
 
 class AdzanFragment : Fragment() {
     private var _binding: FragmentAdzanBinding? = null
     private val binding get() = _binding as FragmentAdzanBinding
 
-    private val sharedViewModel: SharedViewModel by activityViewModels { ViewModelFactory(requireContext()) }
+    private val adzanViewModel: AdzanViewModel by viewModels { ViewModelFactory(requireContext()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,21 +29,32 @@ class AdzanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        sharedViewModel.getKnownLastLocation()
-        sharedViewModel.lastKnownLocation.observe(viewLifecycleOwner) {
-            if (it != null) {
-                val geocoder = Geocoder(requireActivity(), Locale.getDefault())
-                geocoder.getFromLocation(
-                    it[0], // latitude
-                    it[1], //longitude
-                    1
-                ) { listAddress ->
-                    val city = listAddress[0].subAdminArea
-                    val resultOfCity = city.split(" ")
-                    binding.tvLocation.text = resultOfCity[1]
+        adzanViewModel.getDailyAdzanTime().observe(viewLifecycleOwner) {
+            when (it) {
+                is Resource.Loading -> {}
+                is Resource.Success -> {
+                    binding.tvLocation.text = it.data?.listLocation?.get(1)
+                    binding.tvDate.text = it.data?.currentDate?.get(3)
+
+                    when (val adzanTime = it.data?.adzanTime) {
+                        is Resource.Loading -> {}
+                        is Resource.Success -> {
+                            binding.apply {
+                                adzanTime.data?.let {time ->
+                                    tvTimeSubuh.text = time.subuh
+                                    tvTimeImsak.text = time.imsak
+                                    tvTimeDzuhur.text = time.dzuhur
+                                    tvTimeAshar.text = time.ashar
+                                    tvTimeMaghrib.text = time.maghrib
+                                    tvTimeIsya.text = time.isya
+                                }
+                            }
+                        }
+                        is Resource.Error -> {}
+                        else -> {}
+                    }
                 }
-            } else {
-                Toast.makeText(context, "Sorry, Something wrong", Toast.LENGTH_SHORT).show()
+                is Resource.Error -> {}
             }
         }
     }

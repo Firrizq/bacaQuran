@@ -1,11 +1,15 @@
 package com.firrizq.myapplication.utils
 
 import com.firrizq.myapplication.core.domain.model.Ayah
+import com.firrizq.myapplication.core.domain.model.City
 import com.firrizq.myapplication.core.domain.model.QuranEdition
 import com.firrizq.myapplication.core.domain.model.Surah
-import com.firrizq.myapplication.core.network.quran.AyahsItem
-import com.firrizq.myapplication.core.network.quran.QuranEditionItem
-import com.firrizq.myapplication.core.network.quran.SurahItem
+import com.firrizq.myapplication.core.data.network.adzan.CityItem
+import com.firrizq.myapplication.core.data.network.adzan.JadwalItem
+import com.firrizq.myapplication.core.data.network.quran.AyahsItem
+import com.firrizq.myapplication.core.data.network.quran.QuranEditionItem
+import com.firrizq.myapplication.core.data.network.quran.SurahItem
+import com.firrizq.myapplication.core.domain.model.Jadwal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
@@ -59,4 +63,35 @@ object DataMapper {
         }
         return listAyah
     }
+
+    @JvmName("mapCityItemToDomain")
+    fun mapResponseToDomain(input: List<CityItem>): Flow<List<City>> {
+        val cities = ArrayList<City>()
+        input.map {
+            val city = City(
+                id = it.id,
+                location = it.lokasi
+            )
+            cities.add(city)
+        }
+        return flowOf(cities)
+    }
+
+    @JvmName("mapJadwalItemToDomain")
+    fun mapResponseToDomain(input: JadwalItem): Flow<Jadwal>{
+        val jadwal = Jadwal(
+            date = input.date,
+            imsak = input.imsak,
+            isya = input.isya,
+            subuh = input.subuh,
+            dzuhur = input.dzuhur,
+            ashar = input.ashar,
+            dhuha = input.dhuha,
+            terbit = input.terbit,
+            tanggal = input.tanggal,
+            maghrib = input.maghrib
+        )
+        return flowOf()
+    }
+
 }
